@@ -1,9 +1,13 @@
+// Adicionamos a biblioteca para usar o ultrassonico: https://github.com/BrinoOficial/Ultra
 #include <Ultra.h>
  
+// Definimos as portas do ultrassonico
 const int  pino_trigger = 6;
 const int  pino_echo = 5;
+// Porta em que esta conectado o buzzer
+int  buzzer = 11;
 
-
+// Definicao das notas musicais que usaremos
 const int  DO = 262;
 const int  DOs = 277;
 const int  RE = 294;
@@ -21,9 +25,11 @@ const int  DOs2 = 554;
 const int  RE2 = 587;
 const int  REs2 = 622;
 
+// Variavel usada para guardar a leitura do ultra
 int  cm = 0; 
-int  buzzer = 11;
 
+
+// Cria o objeto ultra
 Ultra meuUltra(pino_trigger, pino_echo);
  
 void setup(){
@@ -32,15 +38,17 @@ void setup(){
 }
  
 void loop(){
+    // Faz a leitura do sensor de distancia e salva na variavel cm
     cm = meuUltra.medir();
+    // Associa uma nota ou silencio a cada distancia
     Serial.println(cm);
     if(cm < 4)
-    	noTone(buzzer);
-    else if(cm < 8)
-  	   tone(buzzer, DO);
+    	    noTone(buzzer);
+    else  if(cm < 8)
+  	    tone(buzzer, DO);
     else if(cm < 12)
    	    tone(buzzer, DOs);
-	else if(cm < 16)
+    else if(cm < 16)
    	    tone(buzzer, RE);
     else if(cm < 20)
   	     tone(buzzer, REs);
@@ -51,21 +59,21 @@ void loop(){
     else if(cm < 32)
   	     tone(buzzer, FAs);
     else if(cm < 36)
- 	    tone(buzzer, SOL);
+ 	     tone(buzzer, SOL);
     else if(cm < 40)
-   	    tone(buzzer, SOLs);
+   	     tone(buzzer, SOLs);
     else if(cm < 44)
-  	    tone(buzzer, LA);
+  	     tone(buzzer, LA);
     else if(cm < 48)
-   	    tone(buzzer, LAs);
+   	     tone(buzzer, LAs);
     else if(cm < 52)
-  	    tone(buzzer, SI);
+  	     tone(buzzer, SI);
     else if(cm < 56)
-   	    tone(buzzer, DO2);
+   	     tone(buzzer, DO2);
     else if(cm < 60)
-    	tone(buzzer, DOs2);
+    	     tone(buzzer, DOs2);
     else
-    	noTone(buzzer);
+             noTone(buzzer);
 
     delay(20);
 }
