@@ -1,9 +1,13 @@
+// Adicionamos a biblioteca para usar o ultrassonico: https://github.com/BrinoOficial/Ultra
 usar Ultra
  
+// Definimos as portas do ultrassonico
 Constante numero pino_trigger = 6;
 Constante numero pino_echo = 5;
+// Porta em que esta conectado o buzzer
+numero buzzer = 11;
 
-
+// Definicao das notas musicais que usaremos
 Constante numero DO = 262;
 Constante numero DOs = 277;
 Constante numero RE = 294;
@@ -21,26 +25,29 @@ Constante numero DOs2 = 554;
 Constante numero RE2 = 587;
 Constante numero REs2 = 622;
 
+// Variavel usada para guardar a leitura do ultra
 numero cm = 0; 
-numero buzzer = 11;
 
+// Cria o objeto ultra
 Ultra meuUltra(pino_trigger, pino_echo);
- 
+
 configuracao(){
     USB.conectar(9600);
     definirModo(buzzer, SAIDA);
 }
  
 principal(){
+    // Faz a leitura do sensor de distancia e salva na variavel cm
     cm = meuUltra.medir();
+    // Associa uma nota ou silencio a cada distancia
     USB.enviarln(cm);
     se(cm < 4)
-    	pararSoar(buzzer);
+    	   pararSoar(buzzer);
     senao se(cm < 8)
   	   soar(buzzer, DO);
     senao se(cm < 12)
    	    soar(buzzer, DOs);
-	senao se(cm < 16)
+    senao se(cm < 16)
    	    soar(buzzer, RE);
     senao se(cm < 20)
   	     soar(buzzer, REs);
@@ -63,9 +70,9 @@ principal(){
     senao se(cm < 56)
    	    soar(buzzer, DO2);
     senao se(cm < 60)
-    	soar(buzzer, DOs2);
+    	    soar(buzzer, DOs2);
     senao
-    	pararSoar(buzzer);
+    	    pararSoar(buzzer);
 
     esperar(20);
 }
