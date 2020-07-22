@@ -15,7 +15,7 @@ A montagem do circuito pode ser visto na imagam abaixo:
 ![Imagem do circuito](https://github.com/BrinoOficial/MiniTeremimArduino/blob/master/Circuito/CircuitoTeremim_bb.png)
 
 # Código
-O código está disponível na linguagem Br.ino e na Arduino dentro da pasta "CodigoTeremin"
+O código está disponível na linguagem Br.ino e na Arduino dentro da pasta "CodigoTeremin". Para esse código funcionar é nescessária a biblioteca disponível em: https://github.com/BrinoOficial/Ultra
 
 # Projeto finalizado
 Seguem algumas imagem do resultado do projeto e um breve vídeo de seu funcionamento:
