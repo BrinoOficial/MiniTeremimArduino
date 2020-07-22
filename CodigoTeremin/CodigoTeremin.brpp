@@ -1,0 +1,71 @@
+usar Ultra
+ 
+Constante numero pino_trigger = 6;
+Constante numero pino_echo = 5;
+
+
+Constante numero DO = 262;
+Constante numero DOs = 277;
+Constante numero RE = 294;
+Constante numero REs = 311;
+Constante numero MI = 330;
+Constante numero FA = 349;
+Constante numero FAs = 370;
+Constante numero SOL = 392;
+Constante numero SOLs = 415;
+Constante numero LA = 440;
+Constante numero LAs = 466;
+Constante numero SI = 494;
+Constante numero DO2 = 523;
+Constante numero DOs2 = 554;
+Constante numero RE2 = 587;
+Constante numero REs2 = 622;
+
+numero cm = 0; 
+numero buzzer = 11;
+
+Ultra meuUltra(pino_trigger, pino_echo);
+ 
+configuracao(){
+    USB.conectar(9600);
+    definirModo(buzzer, SAIDA);
+}
+ 
+principal(){
+    cm = meuUltra.medir();
+    USB.enviarln(cm);
+    se(cm < 4)
+    	pararSoar(buzzer);
+    senao se(cm < 8)
+  	   soar(buzzer, DO);
+    senao se(cm < 12)
+   	    soar(buzzer, DOs);
+	senao se(cm < 16)
+   	    soar(buzzer, RE);
+    senao se(cm < 20)
+  	     soar(buzzer, REs);
+    senao se(cm < 24)
+  	     soar(buzzer, MI);
+    senao se(cm < 28)
+  	     soar(buzzer, FA);
+    senao se(cm < 32)
+  	     soar(buzzer, FAs);
+    senao se(cm < 36)
+ 	    soar(buzzer, SOL);
+    senao se(cm < 40)
+   	    soar(buzzer, SOLs);
+    senao se(cm < 44)
+  	    soar(buzzer, LA);
+    senao se(cm < 48)
+   	    soar(buzzer, LAs);
+    senao se(cm < 52)
+  	    soar(buzzer, SI);
+    senao se(cm < 56)
+   	    soar(buzzer, DO2);
+    senao se(cm < 60)
+    	soar(buzzer, DOs2);
+    senao
+    	pararSoar(buzzer);
+
+    esperar(20);
+}
